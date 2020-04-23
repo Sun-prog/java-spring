@@ -17,6 +17,6 @@ public class ClassicalMusic implements Music {
     }
     @Override
     public String getSong() {
-        return "Rhapsody";
+        return "git push -f origin masterRhapsody";
     }
 }
