@@ -9,12 +9,18 @@ import java.util.List;
 import java.util.Random;
 
 
-@Component
+
 public class MusicPlayer {
 
     private Music music1;
     private Music music2;
     List<String> playList;
+    List<Music> musicGenre;
+
+    public MusicPlayer(List<Music> musicGenre) {
+        this.musicGenre = musicGenre;
+    }
+
     enum Type { CLASSIC, ROCK }
     @Value("${musicPlayer.name}")
     private String name;
@@ -37,10 +43,10 @@ public class MusicPlayer {
         this.music2 = music2;
     }
 
-    public String playMusic(MusicPlayer.Type type) {
-        if (type == MusicPlayer.Type.CLASSIC){playList = music1.getSong();}
-        else {playList = music2.getSong();}
+    public String playMusic() {
         Random random = new Random();
+        playList = musicGenre.get(random.nextInt(musicGenre.size())).getSong();
+
         return "Playing: " + playList.get(random.nextInt(playList.size()));
     }
 
